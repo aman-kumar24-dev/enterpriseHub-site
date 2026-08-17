@@ -246,13 +246,21 @@ header nav .nav-sections li[aria-current='page'] a:any-link {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+}
+
+header nav .nav-tools,
+header nav .nav-tools .default-content-wrapper {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
+header nav .nav-tools p {
+  margin: 0;
+}
+
 /* search pill */
-header nav .nav-tools p:first-child a:any-link {
+header nav .nav-tools p.nav-search a:any-link {
   display: inline-flex;
   align-items: center;
   padding: 8px 24px;
@@ -262,13 +270,13 @@ header nav .nav-tools p:first-child a:any-link {
   font-size: 14px;
 }
 
-header nav .nav-tools p:first-child a:hover {
+header nav .nav-tools p.nav-search a:hover {
   border-color: #fff;
   color: #fff;
 }
 
-/* avatar */
-header nav .nav-tools p:last-child a:any-link {
+/* account avatar (shown only when a session is active) */
+header nav .nav-tools p.nav-account a:any-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -281,7 +289,7 @@ header nav .nav-tools p:last-child a:any-link {
   font-weight: 600;
 }
 
-header nav .nav-tools p:last-child a:hover {
+header nav .nav-tools p.nav-account a:hover {
   background-color: #fff;
   color: #000;
 }
