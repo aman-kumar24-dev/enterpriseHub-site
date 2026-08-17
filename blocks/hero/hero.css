@@ -42,11 +42,18 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  max-width: 780px;
+  max-width: 500px;
   padding: 6px 6px 6px 24px;
   border: 1px solid rgb(255 255 255 / 25%);
   border-radius: 999px;
   background-color: rgb(255 255 255 / 4%);
+}
+
+/* hide the hero search below 1024px (nav search covers it there) */
+@media (width <= 1023px) {
+  .hero .hero-search-row {
+    display: none;
+  }
 }
 
 .hero .hero-search input[type='search'] {
