@@ -3,9 +3,19 @@
   --category-color: #8a7f66;
 }
 
-/* one divider per row (bottom); a preceding block's bottom rule frames the top */
+/* self-framing rows: top divider on each, bottom rule closes the block */
 .category-accordion .category-accordion-item {
+  border-top: 1px solid #e6e6e6;
+}
+
+.category-accordion .category-accordion-item:last-child {
   border-bottom: 1px solid #e6e6e6;
+}
+
+/* optional: drop the top rule of the first row (e.g. when the block above
+   already draws a bottom rule) — author as "Category Accordion (no-top-rule)" */
+.category-accordion.no-top-rule .category-accordion-item:first-child {
+  border-top: 0;
 }
 
 /* header (compact / mobile-first) */

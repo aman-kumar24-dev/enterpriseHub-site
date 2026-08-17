@@ -11,6 +11,24 @@
   text-align: center;
 }
 
+/*
+ * Rule variants — control the top/bottom hairlines so adjacent blocks don't
+ * stack into a double line. Author the block name with one of:
+ *   "Stats (no-bottom-rule)" — hide the bottom hairline (e.g. when the block
+ *                              below draws its own top rule → single line)
+ *   "Stats (no-top-rule)"    — hide the top hairline
+ *   "Stats (no-rules)"       — hide both hairlines
+ */
+.stats.no-bottom-rule > ul,
+.stats.no-rules > ul {
+  border-bottom: 0;
+}
+
+.stats.no-top-rule > ul,
+.stats.no-rules > ul {
+  border-top: 0;
+}
+
 .stats > ul > li {
   display: flex;
   flex-direction: column;
