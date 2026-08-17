@@ -1,6 +1,6 @@
 /* Category accordion */
 .category-accordion {
-  --category-color: #e9e4da;
+  --category-color: #8a7f66;
 }
 
 .category-accordion .category-accordion-item {
@@ -11,133 +11,191 @@
   border-bottom: 1px solid #e6e6e6;
 }
 
-/* header */
+/* header (compact / mobile-first) */
 .category-accordion .category-accordion-header {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr auto;
   grid-template-areas:
-    'heading toggle'
-    'desc desc';
+    'badge heading toggle'
+    'badge desc toggle';
   align-items: center;
-  gap: 4px 16px;
+  gap: 2px 16px;
   width: 100%;
   margin: 0;
   border: 0;
-  padding: 28px 0;
+  padding: 20px 0;
   background: transparent;
   text-align: left;
   cursor: pointer;
 }
 
+/* circular badge */
+.category-accordion .category-accordion-badge {
+  grid-area: badge;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--category-color);
+  overflow: hidden;
+}
+
+.category-accordion .category-accordion-badge img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
 .category-accordion .category-accordion-heading {
   grid-area: heading;
+  align-self: end;
   font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-s);
+  font-size: var(--heading-font-size-xs);
   font-weight: 700;
   color: var(--text-color);
 }
 
 .category-accordion .category-accordion-desc {
   grid-area: desc;
-  font-style: italic;
+  align-self: start;
   font-size: var(--body-font-size-xs);
   color: var(--dark-color);
 }
 
-/* + / - toggle */
+/* circular +/- toggle */
 .category-accordion .category-accordion-toggle {
   grid-area: toggle;
   position: relative;
-  width: 20px;
-  height: 20px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #1c1c1c;
+  border-radius: 50%;
 }
 
-.category-accordion .category-accordion-toggle::before,
+/* ensure a >=44px tap target without changing the visual circle */
+.category-accordion .category-accordion-toggle::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+}
+
+/* the +/- glyph */
 .category-accordion .category-accordion-toggle::after {
   content: '';
   position: absolute;
   inset: 0;
   margin: auto;
-  background-color: var(--text-color);
+  width: 12px;
+  height: 12px;
+  background:
+    linear-gradient(currentcolor, currentcolor) center / 12px 2px no-repeat,
+    linear-gradient(currentcolor, currentcolor) center / 2px 12px no-repeat;
+  color: #1c1c1c;
 }
 
-.category-accordion .category-accordion-toggle::before {
-  width: 20px;
-  height: 2px;
+/* open state: filled accent circle, white minus */
+.category-accordion .category-accordion-header[aria-expanded='true'] .category-accordion-toggle {
+  border-color: var(--category-color);
+  background-color: var(--category-color);
 }
 
-.category-accordion .category-accordion-toggle::after {
-  width: 2px;
-  height: 20px;
-}
-
-/* hide the vertical bar when open → makes a minus */
 .category-accordion .category-accordion-header[aria-expanded='true'] .category-accordion-toggle::after {
-  opacity: 0;
+  /* minus only: hide the vertical bar */
+  background: linear-gradient(#fff, #fff) center / 12px 2px no-repeat;
 }
 
 /* panel */
 .category-accordion .category-accordion-panel {
-  padding-bottom: 32px;
+  padding-bottom: 24px;
 }
 
-.category-accordion .category-accordion-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 160px;
-  padding: 24px 32px;
+.category-accordion .category-accordion-subitems {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 12px;
+  margin: 0;
+  padding: 24px 16px;
+  list-style: none;
   border-radius: 14px;
-  background-color: var(--category-color);
+  background-color: #f4f2ef;
 }
 
-/* white pill button */
-.category-accordion .category-accordion-button:any-link {
-  flex: 0 0 auto;
-  display: inline-flex;
+.category-accordion .category-accordion-subitem {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 12px 24px;
-  border-radius: 999px;
-  background-color: #fff;
+  gap: 12px;
+  text-decoration: none;
   color: var(--text-color);
-  font-size: var(--body-font-size-xs);
-  font-weight: 700;
+}
+
+.category-accordion .category-accordion-subitem:hover {
   text-decoration: none;
 }
 
-/* decorative graphic placeholder */
-.category-accordion .category-accordion-graphic {
-  flex: 0 0 auto;
-  width: 72px;
-  height: 72px;
-  border: 2px solid rgb(0 0 0 / 18%);
+.category-accordion .category-accordion-subicon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--category-color);
   border-radius: 50%;
 }
 
-/* explore link */
-.category-accordion .category-accordion-explore:any-link {
-  flex: 0 0 auto;
-  color: var(--text-color);
+.category-accordion .category-accordion-subicon img {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+}
+
+.category-accordion .category-accordion-sublabel {
+  min-height: 2.6em;
+  max-width: 12ch;
   font-size: var(--body-font-size-xs);
   font-weight: 700;
-  text-decoration: none;
+  line-height: 1.3;
+  text-align: center;
 }
 
-.category-accordion .category-accordion-explore:hover {
-  text-decoration: none;
-  opacity: 0.7;
+@media (width >= 600px) {
+  .category-accordion .category-accordion-subitems {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
   .category-accordion .category-accordion-header {
-    grid-template-columns: 280px 1fr auto;
-    grid-template-areas: 'heading desc toggle';
-    padding: 32px 0;
+    column-gap: 24px;
+    padding: 28px 0;
   }
 
-  .category-accordion .category-accordion-banner {
-    min-height: 180px;
-    padding: 32px 48px;
+  .category-accordion .category-accordion-badge {
+    width: 72px;
+    height: 72px;
+  }
+
+  .category-accordion .category-accordion-heading {
+    font-size: var(--heading-font-size-s);
+  }
+
+  .category-accordion .category-accordion-toggle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .category-accordion .category-accordion-panel {
+    padding-bottom: 32px;
+  }
+
+  /* single row that adapts to the sub-item count */
+  .category-accordion .category-accordion-subitems {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    padding: 40px 32px;
   }
 }
