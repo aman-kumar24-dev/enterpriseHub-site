@@ -1,0 +1,143 @@
+/* Category accordion */
+.category-accordion {
+  --category-color: #e9e4da;
+}
+
+.category-accordion .category-accordion-item {
+  border-top: 1px solid #e6e6e6;
+}
+
+.category-accordion .category-accordion-item:last-child {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+/* header */
+.category-accordion .category-accordion-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'heading toggle'
+    'desc desc';
+  align-items: center;
+  gap: 4px 16px;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  padding: 28px 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.category-accordion .category-accordion-heading {
+  grid-area: heading;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-s);
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.category-accordion .category-accordion-desc {
+  grid-area: desc;
+  font-style: italic;
+  font-size: var(--body-font-size-xs);
+  color: var(--dark-color);
+}
+
+/* + / - toggle */
+.category-accordion .category-accordion-toggle {
+  grid-area: toggle;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.category-accordion .category-accordion-toggle::before,
+.category-accordion .category-accordion-toggle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background-color: var(--text-color);
+}
+
+.category-accordion .category-accordion-toggle::before {
+  width: 20px;
+  height: 2px;
+}
+
+.category-accordion .category-accordion-toggle::after {
+  width: 2px;
+  height: 20px;
+}
+
+/* hide the vertical bar when open → makes a minus */
+.category-accordion .category-accordion-header[aria-expanded='true'] .category-accordion-toggle::after {
+  opacity: 0;
+}
+
+/* panel */
+.category-accordion .category-accordion-panel {
+  padding-bottom: 32px;
+}
+
+.category-accordion .category-accordion-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 160px;
+  padding: 24px 32px;
+  border-radius: 14px;
+  background-color: var(--category-color);
+}
+
+/* white pill button */
+.category-accordion .category-accordion-button:any-link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background-color: #fff;
+  color: var(--text-color);
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* decorative graphic placeholder */
+.category-accordion .category-accordion-graphic {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  border: 2px solid rgb(0 0 0 / 18%);
+  border-radius: 50%;
+}
+
+/* explore link */
+.category-accordion .category-accordion-explore:any-link {
+  flex: 0 0 auto;
+  color: var(--text-color);
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.category-accordion .category-accordion-explore:hover {
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+@media (width >= 900px) {
+  .category-accordion .category-accordion-header {
+    grid-template-columns: 280px 1fr auto;
+    grid-template-areas: 'heading desc toggle';
+    padding: 32px 0;
+  }
+
+  .category-accordion .category-accordion-banner {
+    min-height: 180px;
+    padding: 32px 48px;
+  }
+}

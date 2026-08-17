@@ -25,3 +25,78 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
+/*
+ * "What's New" tags variant.
+ * Authoring contract per card (single cell, three lines):
+ *   1. tag    — a **bold** label (renders as a black pill on a grey panel)
+ *   2. title  — the headline
+ *   3. meta   — a timestamp / secondary line
+ */
+.cards.tags > ul {
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.cards.tags > ul > li {
+  border: 0;
+  background-color: transparent;
+}
+
+.cards.tags .cards-card-body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards.tags .cards-card-body > * {
+  margin: 0;
+}
+
+/* tag pill (first paragraph) */
+.cards.tags .cards-card-body > p:first-child {
+  order: 1;
+  align-self: flex-start;
+  min-height: 148px;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  border-radius: 10px;
+  background-color: #ececec;
+}
+
+.cards.tags .cards-card-body > p:first-child strong,
+.cards.tags .cards-card-body > p:first-child a {
+  display: inline-flex;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background-color: #000;
+  color: #fff;
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+}
+
+/* title */
+.cards.tags .cards-card-body > p:nth-child(2) {
+  order: 2;
+  margin-top: 16px;
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+/* timestamp */
+.cards.tags .cards-card-body > p:last-child {
+  order: 3;
+  margin-top: 8px;
+  font-size: var(--body-font-size-xs);
+  color: var(--dark-color);
+}
+
+@media (width >= 900px) {
+  .cards.tags > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

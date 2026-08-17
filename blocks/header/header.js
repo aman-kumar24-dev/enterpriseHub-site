@@ -141,6 +141,14 @@ export default async function decorate(block) {
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+      // mark the section matching the current page as active
+      const link = navSection.querySelector('a[href]');
+      if (link) {
+        const linkPath = new URL(link.href, window.location).pathname;
+        if (linkPath !== '/' && window.location.pathname.startsWith(linkPath)) {
+          navSection.setAttribute('aria-current', 'page');
+        }
+      }
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';

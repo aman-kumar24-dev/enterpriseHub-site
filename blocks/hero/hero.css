@@ -1,37 +1,119 @@
+/* EnterpriseHub search hero */
+.hero-container {
+  background-color: #000;
+}
+
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
 }
 
 .hero {
-  position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
-}
-
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
-.hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
   box-sizing: border-box;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 64px 24px 48px;
+  color: #fff;
+  background-color: #000;
 }
 
-.hero img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+/* intro */
+.hero .hero-intro h1 {
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.hero .hero-intro p {
+  max-width: 640px;
+  margin: 16px 0 0;
+  color: rgb(255 255 255 / 65%);
+  font-size: var(--body-font-size-s);
+}
+
+/* search */
+.hero .hero-search-row {
+  margin-top: 32px;
+}
+
+.hero .hero-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 780px;
+  padding: 6px 6px 6px 24px;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 999px;
+  background-color: rgb(255 255 255 / 4%);
+}
+
+.hero .hero-search input[type='search'] {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  padding: 12px 0;
+  background: transparent;
+  color: #fff;
+  font-size: var(--body-font-size-xs);
+  outline: none;
+}
+
+.hero .hero-search input::placeholder {
+  color: rgb(255 255 255 / 55%);
+}
+
+.hero .hero-search button {
+  flex: 0 0 auto;
+  margin: 0;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 28px;
+  background-color: #fff;
+  color: #000;
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hero .hero-search button:hover {
+  background-color: rgb(255 255 255 / 85%);
+}
+
+/* quick links */
+.hero .hero-links {
+  margin-top: 28px;
+}
+
+.hero .hero-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero .hero-links a:any-link {
+  color: #fff;
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.hero .hero-links a:hover {
+  color: rgb(255 255 255 / 70%);
+  text-decoration: none;
 }
 
 @media (width >= 900px) {
   .hero {
-    padding: 40px 32px;
+    padding: 96px 48px 64px;
+  }
+
+  .hero .hero-intro h1 {
+    font-size: 64px;
   }
 }
