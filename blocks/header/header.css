@@ -275,6 +275,13 @@ header nav .nav-tools p.nav-search a:hover {
   color: #fff;
 }
 
+/* on wide desktop the hero search is visible, so hide the nav search pill */
+@media (width >= 1024px) {
+  header nav .nav-tools p.nav-search {
+    display: none;
+  }
+}
+
 /* account avatar (shown only when a session is active) */
 header nav .nav-tools p.nav-account a:any-link {
   display: inline-flex;
