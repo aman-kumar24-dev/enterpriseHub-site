@@ -38,6 +38,10 @@ function prepareCircleImage(imgOrPicture) {
 export default function decorate(block) {
   const rows = [...block.children];
 
+  // the first row's color drives the shared toggle color across all rows
+  const firstColor = rows[0]?.children[3]?.textContent.trim();
+  if (firstColor) block.style.setProperty('--accordion-toggle-color', firstColor);
+
   rows.forEach((row, index) => {
     const cells = [...row.children];
     const badgeCell = cells[0];

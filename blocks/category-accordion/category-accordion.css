@@ -106,10 +106,11 @@
   color: #1c1c1c;
 }
 
-/* open state: filled accent circle, white minus */
+/* open state: filled accent circle, white minus.
+   Uses a single shared toggle color (first row's) for consistency across rows. */
 .category-accordion .category-accordion-header[aria-expanded='true'] .category-accordion-toggle {
-  border-color: var(--category-color);
-  background-color: var(--category-color);
+  border-color: var(--accordion-toggle-color, var(--category-color));
+  background-color: var(--accordion-toggle-color, var(--category-color));
 }
 
 .category-accordion .category-accordion-header[aria-expanded='true'] .category-accordion-toggle::after {
