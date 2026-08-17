@@ -10,10 +10,30 @@
  *
  * Rows 2 and 3 are optional; the block degrades gracefully when they are omitted.
  *
+ * Variant `image` (authored as "Hero (image)"): the author adds a picture in
+ * its own row. It is lifted out and rendered as a full-bleed background behind
+ * the content, with a dark overlay so the white text stays legible.
+ *
  * @param {Element} block The hero block element
  */
 export default function decorate(block) {
-  const rows = [...block.children];
+  // Background image (image variant): move the first authored picture behind the content
+  const picture = block.querySelector('picture');
+  if (picture) {
+    // remove the top-level row that contains the picture
+    const pictureRow = [...block.children].find((row) => row.contains(picture));
+    if (pictureRow) pictureRow.remove();
+
+    const bg = document.createElement('div');
+    bg.className = 'hero-bg';
+    bg.setAttribute('aria-hidden', 'true');
+    bg.append(picture);
+    block.prepend(bg);
+    block.classList.add('hero-has-image');
+  }
+
+  // content rows are everything except the background layer
+  const rows = [...block.children].filter((el) => !el.classList.contains('hero-bg'));
 
   // 1. Intro
   const intro = rows[0];

@@ -117,3 +117,33 @@
     font-size: 64px;
   }
 }
+
+/* image variant — full-bleed background photo with a dark overlay */
+.hero.hero-has-image {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero.hero-has-image .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.hero.hero-has-image .hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  /* darken toward the left where the text sits, for legibility */
+  background: linear-gradient(90deg, rgb(0 0 0 / 82%) 0%, rgb(0 0 0 / 55%) 55%, rgb(0 0 0 / 35%) 100%);
+}
+
+.hero.hero-has-image .hero-bg picture,
+.hero.hero-has-image .hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
