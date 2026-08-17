@@ -42,10 +42,12 @@
   overflow: hidden;
 }
 
+.category-accordion .category-accordion-badge picture,
 .category-accordion .category-accordion-badge img {
-  width: 60%;
-  height: 60%;
-  object-fit: contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .category-accordion .category-accordion-heading {
@@ -145,12 +147,15 @@
   height: 56px;
   border: 2px solid var(--category-color);
   border-radius: 50%;
+  overflow: hidden;
 }
 
+.category-accordion .category-accordion-subicon picture,
 .category-accordion .category-accordion-subicon img {
-  width: 50%;
-  height: 50%;
-  object-fit: contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .category-accordion .category-accordion-sublabel {

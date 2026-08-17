@@ -18,6 +18,23 @@
  *
  * @param {Element} block The category-accordion block element
  */
+
+/**
+ * Prepares an authored image for use inside a circular container: returns the
+ * picture (or img) and strips the intrinsic width/height attributes so CSS
+ * `object-fit: cover` can crop it responsively regardless of the source size.
+ * @param {Element} imgOrPicture an <img> or <picture> element
+ * @returns {Element} the element to insert
+ */
+function prepareCircleImage(imgOrPicture) {
+  const el = imgOrPicture.closest('picture') || imgOrPicture;
+  el.querySelectorAll('img').forEach((img) => {
+    img.removeAttribute('width');
+    img.removeAttribute('height');
+  });
+  return el;
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
 
@@ -47,7 +64,7 @@ export default function decorate(block) {
     badge.className = 'category-accordion-badge';
     badge.setAttribute('aria-hidden', 'true');
     const badgeImg = badgeCell ? badgeCell.querySelector('picture, img') : null;
-    if (badgeImg) badge.append(badgeImg.closest('picture') || badgeImg);
+    if (badgeImg) badge.append(prepareCircleImage(badgeImg));
 
     const heading = document.createElement('span');
     heading.className = 'category-accordion-heading';
@@ -89,7 +106,7 @@ export default function decorate(block) {
         const ring = document.createElement('span');
         ring.className = 'category-accordion-subicon';
         ring.setAttribute('aria-hidden', 'true');
-        if (img) ring.append(img.closest('picture') || img);
+        if (img) ring.append(prepareCircleImage(img));
 
         const labelEl = document.createElement('span');
         labelEl.className = 'category-accordion-sublabel';
