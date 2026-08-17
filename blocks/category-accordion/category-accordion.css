@@ -3,11 +3,8 @@
   --category-color: #8a7f66;
 }
 
+/* one divider per row (bottom); a preceding block's bottom rule frames the top */
 .category-accordion .category-accordion-item {
-  border-top: 1px solid #e6e6e6;
-}
-
-.category-accordion .category-accordion-item:last-child {
   border-bottom: 1px solid #e6e6e6;
 }
 
