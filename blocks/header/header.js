@@ -141,6 +141,14 @@ export default async function decorate(block) {
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+      // mark the section matching the current page as active
+      const link = navSection.querySelector('a[href]');
+      if (link) {
+        const linkPath = new URL(link.href, window.location).pathname;
+        if (linkPath !== '/' && window.location.pathname.startsWith(linkPath)) {
+          navSection.setAttribute('aria-current', 'page');
+        }
+      }
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
@@ -149,6 +157,27 @@ export default async function decorate(block) {
         }
       });
     });
+  }
+
+  // tools: tag the search and account links, and gate the account avatar
+  // on an active user session (presence of the `auth_token` cookie)
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    const toolLinks = navTools.querySelectorAll('a[href]');
+    toolLinks.forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      if (href.includes('/account')) {
+        link.closest('p')?.classList.add('nav-account');
+      } else if (href.includes('/search')) {
+        link.closest('p')?.classList.add('nav-search');
+      }
+    });
+
+    const hasSession = document.cookie
+      .split(';')
+      .some((c) => c.trim().startsWith('auth_token=') && c.trim().slice('auth_token='.length));
+    const account = navTools.querySelector('.nav-account');
+    if (account && !hasSession) account.remove();
   }
 
   // hamburger for mobile
